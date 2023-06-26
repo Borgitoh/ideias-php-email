@@ -11,6 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Faça algo com os dados do usuário para autenticação (ex: verificar no banco de dados)
     $sql = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      echo $row['email'];
+    } else {
+      // Login inválido
+      echo 'Usuário ou senha inválidos!';
+    }
 
     // Verifica se o usuário foi encontrado no banco de dados
   } 
@@ -55,5 +62,5 @@ function  Enviarcoderash($email, $username, $verificationCode)
   $verificationLink = "http://seusite.com/verify.php?code=$verificationCode";
   $message = "Olá $username,\n\nPor favor, clique no link abaixo para verificar seu email:\n$verificationLink";
 
-  emailValidacao($email, $message);
+  if(emailValidacao($email, $message));
 }
