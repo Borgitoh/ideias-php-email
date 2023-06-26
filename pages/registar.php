@@ -9,13 +9,13 @@
 <body>
 
     <div class="container">
-        <form action="loginController.php" method="POST">
+        <form action="../controller/loginController.php" method="POST">
             <input type="text" name="username" placeholder="Usuário" required>
             <input type="password" name="password" id="password" placeholder="Senha" required>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmar Senha" required>
             <input type="email" name="email" placeholder="E-mail" required>
             <!-- Outros campos do formulário de registro -->
-            <button type="submit" id="submitBtn" disabled>Registrar</button>
+            <button type="submit" id="submitBtn"  name="register" disabled>Registrar</button>
             <p id="password_match_message"></p>
             <p>Já possui uma conta? <a href="index.php">Fazer Login</a></p>
         </form>
