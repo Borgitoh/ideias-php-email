@@ -78,9 +78,9 @@
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+             Ministério das Finanças
             <span class="ag-courses-item_date">
-              04.11.2022
+              
             </span>
           </div>
         </a>
@@ -91,11 +91,11 @@
           <div class="ag-courses-item_bg"></div>
 
           <div class="ag-courses-item_title">
-           AGT
+           AGTMASFAMU
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+          Ministério da Acção Social, Família e Promoção da Mulher
             <span class="ag-courses-item_date">
               04.11.2022
             </span>
@@ -112,7 +112,7 @@
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+          Ministério da Cultura e Turismo
             <span class="ag-courses-item_date">
               04.11.2022
             </span>
@@ -125,11 +125,11 @@
           <div class="ag-courses-item_bg"></div>
 
           <div class="ag-courses-item_title">
-           ISJ
+          MININT
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+          Ministério do Interior
             <span class="ag-courses-item_date">
               04.11.2022
             </span>
@@ -142,11 +142,11 @@
           <div class="ag-courses-item_bg"></div>
 
           <div class="ag-courses-item_title">
-            ARC
+          MINTRANS
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+             Ministério dos Transportes
             <span class="ag-courses-item_date">
               30.11.2022
             </span>
@@ -159,7 +159,13 @@
           <div class="ag-courses-item_bg"></div>
 
           <div class="ag-courses-item_title">
-            SETIC
+          MESCTI
+          </div>
+          <div class="ag-courses-item_date-box">
+          Ministério do Ensino Superior, Ciência, Tecnologia e Inovação
+            <span class="ag-courses-item_date">
+              30.11.2022
+            </span>
           </div>
         </a>
       </div>
@@ -170,6 +176,12 @@
           </div>
           <div class="ag-courses-item_title">
            MIREX
+          </div>
+          <div class="ag-courses-item_date-box">
+          Ministério das Relações Exteriores
+            <span class="ag-courses-item_date">
+              30.11.2022
+            </span>
           </div>
         </a>
       </div>
@@ -183,7 +195,7 @@
           </div>
 
           <div class="ag-courses-item_date-box">
-            Start:
+          Ministério da Saúde
             <span class="ag-courses-item_date">
               31.10.2022
             </span>
