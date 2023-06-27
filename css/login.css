@@ -32,7 +32,7 @@ body {
   .container button {
     width: 100%;
     padding: 10px;
-    background-color: #ff8c00;
+    background-color: #5e4ecb;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -40,7 +40,7 @@ body {
   }
   
   .container button:hover {
-    background-color: #ff7f00;
+    background-color: #5e4ecb;
   }
   
   .container .login-google {
@@ -58,7 +58,7 @@ body {
   }
   
   .container .forgot-password a {
-    color: #333;
+    color: #5e4ecb;
     text-decoration: none;
   }
   

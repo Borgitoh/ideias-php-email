@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../service/conexao.php';
 require '../controller/messagemController.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,50 +12,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Faça algo com os dados do usuário para autenticação (ex: verificar no banco de dados)
     $sql = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $_SESSION['idUser'] = $row['id'];
+      $_SESSION['user'] =  $row['username'];
+      $_SESSION['emailVerified'] = $row['email_verified'];
+
+      $_SESSION['messagem'] = 'Por favor fazer a validação do teu email para ter acesso ao sistema';
+
+     header('Location: ../pages/emailvalida.php');
+    } else {
+      // Login inválido
+      $_SESSION['messagem'] = 'Usuário ou senha inválidos!';
+     header('Location: ../pages/emailvalida.php');
+    }
 
     // Verifica se o usuário foi encontrado no banco de dados
-    if ($result->num_rows > 0) {
-     // Lógica de registro de usuário
-     $username = $_POST['username'];
-     $password = $_POST['password'];
-     $email = $_POST['email'];
- 
-     // Verifica se os campos de usuário, senha e e-mail são válidos
-     if (strlen($username) >= 5 && strlen($password) >= 8 && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  } 
+  elseif (isset($_POST['register'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      $email = $_POST['email'];
+     
+    if (strlen($username) >= 5 && strlen($password) >= 8 && filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $verificationCode = generateVerificationCode();
-       // Insere os dados do usuário no banco de dados
-       $sql = "INSERT INTO usuarios (username, password, email, verificationCode) VALUES ('$username', '$password', '$email','$verificationCode')";
+      // Insere os dados do usuário no banco de dados
+     
+      $sql = "INSERT INTO usuarios (username, password, email, verificationCode) VALUES ('$username', '$password', '$email','$verificationCode')";
+      
+      if ($conn->query($sql) === TRUE) {
+      
+        if (Enviarcoderash($email, $username, $verificationCode)){
+          $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
+          Foi enviar um e-mail para fazer validação do teu registro';
+         header('Location: ../pages/emailvalida.php');
+        }
+        else{
+          $_SESSION['messagem'] = 'erro gerar codigo de validação';
+         header('Location: ../pages/emailvalida.php');
+        }
        
-       if ($conn->query($sql) === TRUE) {
-         // Registro bem-sucedido
-       
-         if(Enviarcoderash($email, $username, $verificationCode))
-         echo 'Registro realizado com sucesso!';
-         else
-         echo 'erro gerar codigo de validação';
-       } else {
-         // Erro ao inserir no banco de dados
-         echo 'Erro ao registrar usuário: ' . $conn->error;
-       }
-     } else {
-       // Dados inválidos
-       echo 'Dados inválidos para registro!';
-     }
-   }
+      } else {
+        
+        $_SESSION['messagem'] = 'Erro ao registrar usuário: ' . $conn->error;
+       header('Location: ../pages/emailvalida.php');
+      }
+    } else {
+      $_SESSION['messagem'] ='Dados inválidos para registro!';
+     header('Location: ../pages/emailvalida.php');
+    }
   }
 }
 
-function generateVerificationCode() {
+function generateVerificationCode()
+{
   $code = uniqid();
   $verificationCode = md5($code);
   return $verificationCode;
 }
-function  Enviarcoderash($email, $username, $verificationCode) {
-
- 
-  // Função para gerar um código de verificação
-  $verificationLink = "http://seusite.com/verify.php?code=$verificationCode"; 
+function  Enviarcoderash($email, $username, $verificationCode)
+{
+  $verificationLink = "http://seusite.com/verify.php?code=$verificationCode";
   $message = "Olá $username,\n\nPor favor, clique no link abaixo para verificar seu email:\n$verificationLink";
-  
-  emailValidacao($email,$message);
+
+  if(emailValidacao($email, $message)){
+    return true;
+  }
+   else
+   return false;  
 }

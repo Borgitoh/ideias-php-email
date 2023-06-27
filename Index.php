@@ -5,6 +5,6 @@
   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-  <?php include 'pages/login.php'; ?>
+  <?php header("Location: pages/login.php"); ?>
 </body>
 </html>
