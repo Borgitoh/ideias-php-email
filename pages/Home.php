@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../css/home.css">
     <script type="javascript" src="../js/home.js"></script>
     <link rel="stylesheet" href="../css/modal.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -23,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <a  class="nav_item">
+                <a class="nav_item" onclick="">
                     <svg>
                         <use xlink:href="#inbox">
                     </svg>
@@ -200,11 +201,25 @@
     <div class="modal" id="modal-1">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Ministério das Finanças</h2>
-            <p>Conteúdo do modal...</p>
+            <center>
+                <h2 a>Ministério das Finanças</h2>
+            </center>
+            <form>
+                <div class="form-group">
+                    <label for="assunto">Assunto:</label>
+                    <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="9" placeholder="Digite a mensagem"></textarea>
+                </div>
+                <div class="container">
+                    <button id="button"></button>
+                </div>
+
+            </form>
         </div>
     </div>
-
 
     <script>
         let links = document.querySelectorAll('.nav_item');
@@ -254,6 +269,27 @@
         // Adicionar eventos de clique para fechar o modal
         modalCloseButtons.forEach(button => {
             button.addEventListener('click', closeModal);
+        });
+
+
+        // botao 
+        $(function() {
+            $("#button").click(function() {
+                $("#button").addClass("onclic", 250, validate);
+            });
+
+            function validate() {
+                setTimeout(function() {
+                    $("#button").removeClass("onclic");
+                    $("#button").addClass("validate", 450, callback);
+                }, 2250);
+            }
+
+            function callback() {
+                setTimeout(function() {
+                    $("#button").removeClass("validate");
+                }, 1250);
+            }
         });
     </script>
 </body>
