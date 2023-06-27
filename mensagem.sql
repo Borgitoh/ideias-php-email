@@ -8,5 +8,24 @@ CREATE TABLE usuarios (
   password VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   email_verified BOOLEAN NOT NULL DEFAULT 0,
-   verificationCode VARCHAR(5000)
+  verificationCode VARCHAR(5000)
 );
+
+CREATE TABLE ministerio (
+  idministerio INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  descricao VARCHAR(5000) NOT NULL
+);
+
+CREATE TABLE menssagem (
+  idMessagem INT AUTO_INCREMENT PRIMARY KEY,
+  assunto VARCHAR(255) NOT NULL,
+  texto VARCHAR(5000) NOT NULL,
+  idUsuario INT NOT NULL,
+  idMinisterio INT NOT NULL,
+  FOREIGN KEY (idUsuario) REFERENCES usuarios (id),
+  FOREIGN KEY (idMinisterio) REFERENCES ministerio (idministerio)
+);
+
+
+select * from usuarios;
