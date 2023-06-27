@@ -33,7 +33,8 @@
           <svg>
             <use xlink:href="#profile">
           </svg>
-          <span class="link-text">Profile</span>
+          <span class="link-text"><?php
+          session_start();  echo  $_SESSION['user']?> </span>
         </a>
       </li>
     </ul>

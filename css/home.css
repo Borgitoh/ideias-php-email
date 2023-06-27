@@ -115,11 +115,22 @@ body {
 .ag-courses-item_link {
   display: block;
   padding: 30px 20px;
-  background-color: #121212;
+  background-color: #FFF;
 
   overflow: hidden;
 
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_title {
+  text-decoration: none;
+  color: #FFF;
+}
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_date-box {
+  text-decoration: none;
+  color: #FFF;
 }
 .ag-courses-item_link:hover,
 .ag-courses-item_link:hover .ag-courses-item_date {
@@ -139,14 +150,14 @@ body {
 
   font-weight: bold;
   font-size: 30px;
-  color: #FFF;
+  color: #5e4ecb;
 
   z-index: 2;
   position: relative;
 }
 .ag-courses-item_date-box {
   font-size: 18px;
-  color: #FFF;
+  color: #5e4ecb;
 
   z-index: 2;
   position: relative;
@@ -177,18 +188,23 @@ body {
 }
 .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
   background-color: #5e4ecb;
+  color: #FFF;
 }
 .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
   background-color: #5e4ecb;
+  color: #FFF;
 }
 .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
   background-color: #5e4ecb;
+  color: #FFF;
 }
 .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
   background-color: #5e4ecb;
+  color: #FFF;
 }
 .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
   background-color: #5e4ecb;
+  color: #FFF;
 }
 
 
