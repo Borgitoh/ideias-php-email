@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../service/conexao.php';
 require '../controller/messagemController.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,10 +14,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      echo $row['email'];
+      $_SESSION['idUser'] = $row['id'];
+      $_SESSION['user'] =  $row['username'];
+      $_SESSION['emailVerified'] = $row['email_verified'];
+
+      $_SESSION['messagem'] = 'Por favor fazer a validação do teu email para ter acesso ao sistema';
+
+     header('Location: ../pages/emailvalida.php');
     } else {
       // Login inválido
-      echo 'Usuário ou senha inválidos!';
+      $_SESSION['messagem'] = 'Usuário ou senha inválidos!';
+     header('Location: ../pages/emailvalida.php');
     }
 
     // Verifica se o usuário foi encontrado no banco de dados
@@ -25,27 +33,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $username = $_POST['username'];
       $password = $_POST['password'];
       $email = $_POST['email'];
-      echo 1;
-
+     
     if (strlen($username) >= 5 && strlen($password) >= 8 && filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $verificationCode = generateVerificationCode();
       // Insere os dados do usuário no banco de dados
-      echo 2;
+     
       $sql = "INSERT INTO usuarios (username, password, email, verificationCode) VALUES ('$username', '$password', '$email','$verificationCode')";
-      echo 3;
+      
       if ($conn->query($sql) === TRUE) {
-        echo 4;
-        if (Enviarcoderash($email, $username, $verificationCode))
-          echo 'Registro realizado com sucesso!';
-        else
-          echo 'erro gerar codigo de validação';
+      
+        if (Enviarcoderash($email, $username, $verificationCode)){
+          $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
+          Foi enviar um e-mail para fazer validação do teu registro';
+         header('Location: ../pages/emailvalida.php');
+        }
+        else{
+          $_SESSION['messagem'] = 'erro gerar codigo de validação';
+         header('Location: ../pages/emailvalida.php');
+        }
+       
       } else {
-        echo 5;
-        echo 'Erro ao registrar usuário: ' . $conn->error;
+        
+        $_SESSION['messagem'] = 'Erro ao registrar usuário: ' . $conn->error;
+       header('Location: ../pages/emailvalida.php');
       }
     } else {
-      echo 6;
-      echo 'Dados inválidos para registro!';
+      $_SESSION['messagem'] ='Dados inválidos para registro!';
+     header('Location: ../pages/emailvalida.php');
     }
   }
 }
@@ -58,9 +72,12 @@ function generateVerificationCode()
 }
 function  Enviarcoderash($email, $username, $verificationCode)
 {
-
   $verificationLink = "http://seusite.com/verify.php?code=$verificationCode";
   $message = "Olá $username,\n\nPor favor, clique no link abaixo para verificar seu email:\n$verificationLink";
 
-  if(emailValidacao($email, $message));
+  if(emailValidacao($email, $message)){
+    return true;
+  }
+   else
+   return false;  
 }

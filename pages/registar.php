@@ -17,7 +17,7 @@
             <!-- Outros campos do formulário de registro -->
             <button type="submit" id="submitBtn"  name="register" disabled>Registrar</button>
             <p id="password_match_message"></p>
-            <p>Já possui uma conta? <a href="index.php">Fazer Login</a></p>
+            <p>Já possui uma conta? <a href="../index.php">Fazer Login</a></p>
         </form>
     </div>
     <script>
