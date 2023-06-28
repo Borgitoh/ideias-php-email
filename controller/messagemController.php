@@ -9,14 +9,10 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-
-
-function enviarMenssagem($email, $body, $assunto)  {
+function enviarMenssagem($assunto, $message)  {
     try {
-        $mail = new PHPMailer(true);
         //Server settings
+        $mail = new PHPMailer(true);
         $mail->CharSet = "UTF-8";
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      
         $mail->isSMTP();                                           
@@ -29,16 +25,17 @@ function enviarMenssagem($email, $body, $assunto)  {
        
     
         //Recipients
-        $mail->setFrom('kenesms@dmdevelopers.co', 'Mailer');  
-        $mail->addAddress($email);               
+        $mail->setFrom('kene.borges@conexaosublime.com', 'Mailer');  
+        $mail->addAddress('btckeneconde@gmail.com');               
     
         //Content
         $mail->isHTML(true);                                 
         $mail->Subject = $assunto;
-        $mail->Body    = $body;
-        $mail->AltBody =  $body;
+        $mail->Body    = $message;
+        $mail->AltBody = $message;
     
         $mail->send();
+      
         echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -72,7 +69,13 @@ function emailValidacao($email, $body){
     
         $mail->send();
         echo 'Message has been sent';
+        $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
+          Foi enviado um e-mail para fazer validação do teu registro';
+
+          
+          header('Location: ../pages/emailvalida.php');
         return true;
+        
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         return false;

@@ -1,3 +1,7 @@
+
+<?php 
+  require 'validasasao.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +30,7 @@
                 </a>
             </li>
             <li>
-                <a href="messagem.php" >
+                <a href="messagem.php" class="active">
                     <svg>
                         <use xlink:href="#inbox">
                     </svg>
@@ -34,12 +38,12 @@
                 </a>
             </li>
             <li>
-                <a class="nav_item">
+                <a href="sair.php" class="active">
                     <svg>
                         <use xlink:href="#profile">
                     </svg>
                     <span class="link-text"><?php
-                                            session_start();
+                                           session_start();
                                             echo  $_SESSION['user'] ?> </span>
                 </a>
             </li>

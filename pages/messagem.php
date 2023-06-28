@@ -1,3 +1,6 @@
+<?php 
+  require 'validasasao.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -34,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav_item">
+                <a  href="sair.php" >
                     <svg>
                         <use xlink:href="#profile">
                     </svg>
@@ -113,7 +117,7 @@
                         <td><?php echo $texto; ?></td>
                         <td><?php echo $tituloMinisterio; ?></td>
                         <td><?php echo $dataEnvio; ?></td>
-                        <td><a href="#" data-toggle="modal" data-toggle="modal" data-target="#exampleModal<?= ($cont); ?>">olhar </a></td>
+                        <td><a href="#" data-toggle="modal" data-toggle="modal" data-target="#exampleModal<?= ($cont); ?>"><i class="fa fa-eye" style="color: #432fbf;     font-size: 22px;"></i></a></td>
                     </tr>  
                     
                     <?php

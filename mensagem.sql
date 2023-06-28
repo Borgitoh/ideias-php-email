@@ -28,7 +28,7 @@ CREATE TABLE menssagem (
   FOREIGN KEY (idMinisterio) REFERENCES ministerio (idministerio)
 );
 
-INSERT INTO `ministerio` (`idministerio`, `titulo`, `descricao`) VALUES
+INSERT INTO `ministerio` (`titulo`, `descricao`) VALUES
 ( 'MINFIN', ' Ministério das Finanças'),
 ( 'MASFAMU', 'Ministério da Acção Social, Família e Promoção da Mulher'),
 ( 'MCTA', ' Ministério da Cultura e Turismo'),
@@ -38,7 +38,7 @@ INSERT INTO `ministerio` (`idministerio`, `titulo`, `descricao`) VALUES
 ( 'MIREX', 'Ministério das Relações Exteriores'),
 ( 'MINSA', 'Ministério da Saúde');
 
-drop table usuarios;
+drop DATABASE meu_banco_de_dados;
 
 select * from menssagem;
 
