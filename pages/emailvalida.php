@@ -16,18 +16,10 @@
   
   <div class="login-google">
   <?php   
-     if ( $_SESSION['messagem']){
+     if (  $_SESSION['idUser']){
 
       ?>
   <a href="Login.php">  <button> Login</button></a>
-   <?php   
- 
-     } ?>
-      <?php   
-     if ( ! $_SESSION['idUser']){
-
-      ?>
-    <a href="messagem.php">  <button> messagem</button></a>
    <?php   
  
      } ?>

@@ -165,10 +165,6 @@
                                         <label for="mensagem">Mensagem:</label>
                                         <textarea id="mensagem" name="mensagem" rows="4" disabled placeholder="Digite a mensagem"><?php echo $texto; ?></textarea>
                                     </div>
-                                    <div class="container">
-                                        <button id="button"></button>
-                                    </div>
-
                                 </form>
                             </div>
                         </div>

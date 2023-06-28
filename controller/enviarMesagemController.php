@@ -15,12 +15,12 @@ require '../controller/messagemController.php';
 
         if ($conn->query($sql) === TRUE) {
             $_SESSION['messagem'] = 'Menssagem enviada com Sucesso';
-            header('Location: ../pages/emailvalida.php');
+            header('Location: ../pages/messagem.php');
         } else {
             echo "Erro ao inserir mensagem na tabela menssagem: " . $conn->error;
         }
     }
-    header('Location: ../pages/messagem.php');
+ 
 
 
 // Fechar a conexão com o banco de dados

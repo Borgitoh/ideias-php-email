@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     $sql = "UPDATE usuarios SET email_verified = 1 WHERE id = $id";
     $result = $conn->query($sql);
 
-    $_SESSION['messagem'] = 'O seu Emial foi validado com sucesso!
+    $_SESSION['messagem'] = 'O seu Email foi validado com sucesso!
                              <br> por favor fazer login';
 
     header('Location: ../pages/emailvalida.php');

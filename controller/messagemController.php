@@ -36,7 +36,8 @@ function enviarMenssagem($assunto, $message)  {
     
         $mail->send();
       
-        echo 'Message has been sent';
+        echo 'Message has been sent'; 
+        return true;
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -69,11 +70,6 @@ function emailValidacao($email, $body){
     
         $mail->send();
         echo 'Message has been sent';
-        $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
-          Foi enviado um e-mail para fazer validação do teu registro';
-
-          
-          header('Location: ../pages/emailvalida.php');
         return true;
         
     } catch (Exception $e) {
