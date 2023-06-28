@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
+
 
     <nav>
         <div class="link-background"></div>
@@ -74,150 +76,57 @@
     <br>
     <div class="ag-format-container">
         <div class="ag-courses_box">
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MINFIN
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério das Finanças
-                        <span class="ag-courses-item_date">
-
-                        </span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        AGTMASFAMU
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério da Acção Social, Família e Promoção da Mulher
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MCTA
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério da Cultura e Turismo
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MININT
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério do Interior
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MINTRANS
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério dos Transportes
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MESCTI
-                    </div>
-                    <div class="ag-courses-item_date-box">
-                        Ministério do Ensino Superior, Ciência, Tecnologia e Inovação
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg">
-                    </div>
-                    <div class="ag-courses-item_title">
-                        MIREX
-                    </div>
-                    <div class="ag-courses-item_date-box">
-                        Ministério das Relações Exteriores
-
-                    </div>
-                </a>
-            </div>
-
-            <div class="ag-courses_item">
-                <a href="#" class="ag-courses-item_link" data-modal-target="modal-1">
-                    <div class="ag-courses-item_bg"></div>
-
-                    <div class="ag-courses-item_title">
-                        MINSA
-                    </div>
-
-                    <div class="ag-courses-item_date-box">
-                        Ministério da Saúde
-
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-
-    <div class="modal" id="modal-1">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <center>
-                <h2 a>Ministério das Finanças</h2>
-            </center>
-            <form>
-                <div class="form-group">
-                    <label for="assunto">Assunto:</label>
-                    <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto">
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" rows="9" placeholder="Digite a mensagem"></textarea>
-                </div>
-                <div class="container">
-                    <button id="button"></button>
+            <?php $cont = 0;
+            require '../service/conexao.php';
+            $sql = "SELECT * FROM ministerio";
+            $result = $conn->query($sql);
+            // Loop para exibir cada ministério
+            while ($row = $result->fetch_assoc()) {
+                $idministerio = $row["idministerio"];
+                $titulo = $row["titulo"];
+                $descricao = $row["descricao"];
+                $cont++;
+            ?>
+                <div class="ag-courses_item">
+                    <a href="#" class="ag-courses-item_link" data-toggle="modal" data-toggle="modal" data-target="#exampleModal<?= ($cont); ?>">
+                        <div class="ag-courses-item_bg"></div>
+                        <div class="ag-courses-item_title"><?php echo $titulo; ?></div>
+                        <div class="ag-courses-item_date-box"><?php echo $descricao; ?></div>
+                    </a>
+             
                 </div>
 
-            </form>
+                <div class="modal fade bd-example-modal-lg" id="exampleModal<?= ($cont); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <span class="modal-close">&times;</span>
+                            <center>
+                                <h2><?php echo $titulo; ?></h2>
+                            </center>
+                            <form>
+                            <div class="form-group d-none">
+                                    <label for="assunto">Assunto:</label>
+                                    <input type="text" id="idministerio" name="idministerio" value="<?php echo $idministerio; ?>" placeholder="Digite o assunto">
+                                </div>
+                                <div class="form-group">
+                                    <label for="assunto">Assunto:</label>
+                                    <input type="text" id="assunto" name="assunto"  placeholder="Digite o assunto">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mensagem">Mensagem:</label>
+                                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Digite a mensagem"></textarea>
+                                </div>
+                                <div class="container">
+                                    <button id="button"></button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 
@@ -241,57 +150,10 @@
 
             });
         })
-        const modalTriggers = document.querySelectorAll('[data-modal-target]');
-        const modalCloseButtons = document.querySelectorAll('.modal-close');
-        const modals = document.querySelectorAll('.modal');
-
-        // Função para abrir o modal
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.add('active');
-        }
-
-        // Função para fechar o modal
-        function closeModal() {
-            modals.forEach(modal => {
-                modal.classList.remove('active');
-            });
-        }
-
-        // Adicionar eventos de clique para abrir o modal
-        modalTriggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const modalId = trigger.getAttribute('data-modal-target');
-                openModal(modalId);
-            });
-        });
-
-        // Adicionar eventos de clique para fechar o modal
-        modalCloseButtons.forEach(button => {
-            button.addEventListener('click', closeModal);
-        });
-
-
-        // botao 
-        $(function() {
-            $("#button").click(function() {
-                $("#button").addClass("onclic", 250, validate);
-            });
-
-            function validate() {
-                setTimeout(function() {
-                    $("#button").removeClass("onclic");
-                    $("#button").addClass("validate", 450, callback);
-                }, 2250);
-            }
-
-            function callback() {
-                setTimeout(function() {
-                    $("#button").removeClass("validate");
-                }, 1250);
-            }
-        });
     </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

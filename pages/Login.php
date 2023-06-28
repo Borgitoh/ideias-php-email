@@ -17,7 +17,7 @@
     <button type="submit" name="login">Login</button>
   </form>
   <div class="login-google">
-    <button> <a href="registar.php">Registar</a></button>
+  <a href="registar.php"> <button> Registar</button></a>
   </div>
 </div>
 </body>

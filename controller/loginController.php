@@ -48,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (Enviarcoderash($email, $username, $verificationCode)){
           $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
           Foi enviar um e-mail para fazer validação do teu registro';
-         header('Location: ../pages/emailvalida.php');
+        // header('Location: ../pages/emailvalida.php');
         }
         else{
           $_SESSION['messagem'] = 'erro gerar codigo de validação';
-         header('Location: ../pages/emailvalida.php');
+         //header('Location: ../pages/emailvalida.php');
         }
        
       } else {
