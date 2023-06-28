@@ -23,9 +23,13 @@ CREATE TABLE menssagem (
   texto VARCHAR(5000) NOT NULL,
   idUsuario INT NOT NULL,
   idMinisterio INT NOT NULL,
+ data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (idUsuario) REFERENCES usuarios (id),
   FOREIGN KEY (idMinisterio) REFERENCES ministerio (idministerio)
 );
 
 
-select * from usuarios;
+
+select * from ministerio;
+
+
