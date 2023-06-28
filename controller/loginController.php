@@ -48,7 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (Enviarcoderash($email, $username, $verificationCode)){
           $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
           Foi enviado um e-mail para fazer validação do teu registro';
-          header('Location: ../pages/emailvalida.php');
+
+          echo '<script>
+          window.location.href = "http://localhost/ideias-php-email/pages/emailvalida.php";
+      </script>';
+
         }
         else{
           $_SESSION['messagem'] = 'erro gerar codigo de validação';
@@ -64,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['messagem'] ='Dados inválidos para registro!';
      header('Location: ../pages/emailvalida.php');
     }
-    header('Location: ../pages/emailvalida.php');
   }
 }
 
