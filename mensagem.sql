@@ -28,8 +28,18 @@ CREATE TABLE menssagem (
   FOREIGN KEY (idMinisterio) REFERENCES ministerio (idministerio)
 );
 
+INSERT INTO `ministerio` (`idministerio`, `titulo`, `descricao`) VALUES
+( 'MINFIN', ' Ministério das Finanças'),
+( 'MASFAMU', 'Ministério da Acção Social, Família e Promoção da Mulher'),
+( 'MCTA', ' Ministério da Cultura e Turismo'),
+( 'MININT', ' Ministério do Interior'),
+( 'MINTRANS', 'Ministério dos Transportes'),
+( 'MESCTI', ' Ministério do Ensino Superior, Ciência, Tecnologia e Inovação'),
+( 'MIREX', 'Ministério das Relações Exteriores'),
+( 'MINSA', 'Ministério da Saúde');
 
+drop table usuarios;
 
-select * from ministerio;
+select * from menssagem;
 
 
