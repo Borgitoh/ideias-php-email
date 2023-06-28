@@ -18,7 +18,7 @@
         <div class="link-background"></div>
         <ul>
             <li>
-                <a class="nav_item active">
+                <a href="Home.php" >
                     <svg>
                         <use xlink:href="#home">
                     </svg>
@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav_item" onclick="">
+                <a class="nav_item active" onclick="">
                     <svg>
                         <use xlink:href="#inbox">
                     </svg>
@@ -75,93 +75,127 @@
     </svg>
     <br>
     <div class="ag-format-container">
-        <div class="ag-courses_box">
-            <?php $cont = 0;
-            require '../service/conexao.php';
-            $sql = "SELECT * FROM ministerio";
-            $result = $conn->query($sql);
-            // Loop para exibir cada ministério
-            while ($row = $result->fetch_assoc()) {
-                $idministerio = $row["idministerio"];
-                $titulo = $row["titulo"];
-                $descricao = $row["descricao"];
-                $cont++;
-            ?>
-                <div class="ag-courses_item">
-                    <a href="#" class="ag-courses-item_link" data-toggle="modal" data-toggle="modal" data-target="#exampleModal<?= ($cont); ?>">
-                        <div class="ag-courses-item_bg"></div>
-                        <div class="ag-courses-item_title"><?php echo $titulo; ?></div>
-                        <div class="ag-courses-item_date-box"><?php echo $descricao; ?></div>
-                    </a>
-             
-                </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Assunto</th>
+                    <th>Texto</th>
+                    <th>Ministério</th>
+                    <th>Data de Envio</th>
+                    <th>Açções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                //session_start();
+               // $id =  $_SESSION['idUser'];
+                require '../service/conexao.php';
+                $sql = "SELECT m.idMessagem, m.assunto, m.texto, m.idUsuario, m.idMinisterio, m.data_envio, mi.titulo AS titulo_ministerio
+                FROM menssagem m
+                INNER JOIN ministerio mi ON m.idMinisterio = mi.idministerio";
+                $result = $conn->query($sql);
+                $cont = 0;
+                // Loop para exibir cada mensagem
+                while ($row = $result->fetch_assoc()) {
+                    $idMessagem = $row["idMessagem"];
+                    $assunto = $row["assunto"];
+                    $texto = $row["texto"];
+                    $idUsuario = $row["idUsuario"];
+                    $idMinisterio = $row["idMinisterio"];
+                    $tituloMinisterio = $row["titulo_ministerio"];
+                    $dataEnvio = $row["data_envio"];
+                    $cont++;
+                ?>
+                    <tr>
+                        <td><?php echo $idMessagem; ?></td>
+                        <td><?php echo $assunto; ?></td>
+                        <td><?php echo $texto; ?></td>
+                        <td><?php echo $tituloMinisterio; ?></td>
+                        <td><?php echo $dataEnvio; ?></td>
+                        <td><a href="#" data-toggle="modal" data-toggle="modal" data-target="#exampleModal<?= ($cont); ?>">olhar </a></td>
+                    </tr>  
+                    
+                    <?php
+                }
+    ?>
+            </tbody>
+        </table>
+        <?php
+               // session_start();
+               // $id =  $_SESSION['idUser'];
+                require '../service/conexao.php';
+                $sql = "SELECT m.idMessagem, m.assunto, m.texto, m.idUsuario, m.idMinisterio, m.data_envio, mi.titulo AS titulo_ministerio
+                FROM menssagem m
+                INNER JOIN ministerio mi ON m.idMinisterio = mi.idministerio";
+                $result = $conn->query($sql);
+                $cont = 0;
+                // Loop para exibir cada mensagem
+                while ($row = $result->fetch_assoc()) {
+                    $idMessagem = $row["idMessagem"];
+                    $assunto = $row["assunto"];
+                    $texto = $row["texto"];
+                    $idUsuario = $row["idUsuario"];
+                    $idMinisterio = $row["idMinisterio"];
+                    $tituloMinisterio = $row["titulo_ministerio"];
+                    $dataEnvio = $row["data_envio"];
+                    $cont++;
+                ?>
+        <div class="modal fade bd-example-modal-lg" id="exampleModal<?= ($cont); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <span class="modal-close">&times;</span>
+                                <center>
+                                    <h2><?php echo $tituloMinisterio; ?></h2>
+                                </center>
+                                <form>
+                                    <div class="form-group d-none">
+                                        <label for="assunto">Assunto:</label>
+                                        <input type="text" id="idministerio" name="idministerio" disabled value="<?php echo $idministerio; ?>" placeholder="Digite o assunto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="assunto">Assunto:</label>
+                                        <input type="text" id="assunto" name="assunto" disabled value="<?php echo $assunto; ?>" placeholder="Digite o assunto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mensagem">Mensagem:</label>
+                                        <textarea id="mensagem" name="mensagem" rows="4" disabled placeholder="Digite a mensagem"><?php echo $texto; ?></textarea>
+                                    </div>
+                                    <div class="container">
+                                        <button id="button"></button>
+                                    </div>
 
-                <div class="modal fade bd-example-modal-lg" id="exampleModal<?= ($cont); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <span class="modal-close">&times;</span>
-                            <center>
-                                <h2><?php echo $titulo; ?></h2>
-                            </center>
-                            <form>
-                            <div class="form-group d-none">
-                                    <label for="assunto">Assunto:</label>
-                                    <input type="text" id="idministerio" name="idministerio" value="<?php echo $idministerio; ?>" placeholder="Digite o assunto">
-                                </div>
-                                <div class="form-group">
-                                    <label for="assunto">Assunto:</label>
-                                    <input type="text" id="assunto" name="assunto" value="<?php echo $titulo; ?>" placeholder="Digite o assunto">
-                                </div>
-                                <div class="form-group">
-                                    <label for="mensagem">Mensagem:</label>
-                                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Digite a mensagem"><?php echo $descricao; ?></textarea>
-                                </div>
-                                <div class="container">
-                                    <button id="button"></button>
-                                </div>
-
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
+                    <?php
+                }
+    ?>
+
     </div>
 
+    <script>
+        let links = document.querySelectorAll('.nav_item');
+        let background = document.querySelector('.link-background')
 
 
+        const clickHandler = (el) => {
+            links.forEach(link => {
+                link.classList.remove('active');
+            })
+            el.classList.add('active');
+        }
+        links.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Update background position
+                background.style.transform = `translateX(${128.25 * index}%)`
+                clickHandler(e.currentTarget);
 
-    <!-- Modal -->
-
-    <!--   <div class="modal" id="modal-<?php echo $idministerio; ?>">
-            <div class="modal-content">
-                <span class="modal-close">&times;</span>
-                <center>
-                    <h2><?php echo $titulo; ?></h2>
-                </center>
-                <form>
-                    <div class="form-group">
-                        <label for="assunto">Assunto:</label>
-                        <input type="text" id="assunto" name="assunto" placeholder="Digite o assunto">
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem:</label>
-                        <textarea id="mensagem" name="mensagem" rows="9" placeholder="Digite a mensagem"></textarea>
-                    </div>
-                    <div class="container">
-                        <button id="button"></button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
- -->
-
-
-
-
+            });
+        })
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

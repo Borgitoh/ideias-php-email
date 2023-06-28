@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav_item" onclick="">
+                <a href="messagem.php" >
                     <svg>
                         <use xlink:href="#inbox">
                     </svg>
@@ -103,18 +103,18 @@
                             <center>
                                 <h2><?php echo $titulo; ?></h2>
                             </center>
-                            <form>
+                            <form  action="../controller/enviarMesagemController.php"  method="POST">
                             <div class="form-group d-none">
                                     <label for="assunto">Assunto:</label>
                                     <input type="text" id="idministerio" name="idministerio" value="<?php echo $idministerio; ?>" placeholder="Digite o assunto">
                                 </div>
                                 <div class="form-group">
                                     <label for="assunto">Assunto:</label>
-                                    <input type="text" id="assunto" name="assunto"  placeholder="Digite o assunto">
+                                    <input type="text" id="assunto" name="assunto" require  placeholder="Digite o assunto">
                                 </div>
                                 <div class="form-group">
                                     <label for="mensagem">Mensagem:</label>
-                                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Digite a mensagem"></textarea>
+                                    <textarea id="mensagem" name="mensagem" rows="4" require placeholder="Digite a mensagem"></textarea>
                                 </div>
                                 <div class="container">
                                     <button id="button"></button>
