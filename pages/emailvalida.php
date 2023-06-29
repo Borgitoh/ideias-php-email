@@ -1,3 +1,6 @@
+<?php 
+  require 'validasasao.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,14 @@
      echo $_SESSION['messagem'] ; ?></h2>
   
   <div class="login-google">
-    <button> <a href="Login.php">Login</a></button>
+  <?php   
+     if (  $_SESSION['idUser']){
+
+      ?>
+  <a href="Login.php">  <button> Login</button></a>
+   <?php   
+ 
+     } ?>
   </div>
 </div>
 </body>

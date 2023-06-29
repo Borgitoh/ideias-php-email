@@ -17,10 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['idUser'] = $row['id'];
       $_SESSION['user'] =  $row['username'];
       $_SESSION['emailVerified'] = $row['email_verified'];
-
-      $_SESSION['messagem'] = 'Por favor fazer a validação do teu email para ter acesso ao sistema';
-
-     header('Location: ../pages/emailvalida.php');
+      if($_SESSION['emailVerified'] ==0){
+        $_SESSION['messagem'] = 'Por favor fazer a validação do teu email para ter acesso ao sistema';
+        header('Location: ../pages/emailvalida.php');
+      }else{
+        header('Location: ../pages/home.php');
+      }
+        
     } else {
       // Login inválido
       $_SESSION['messagem'] = 'Usuário ou senha inválidos!';
@@ -44,8 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
         if (Enviarcoderash($email, $username, $verificationCode)){
           $_SESSION['messagem'] = 'Registro realizado com sucesso! <br>
-          Foi enviar um e-mail para fazer validação do teu registro';
-         header('Location: ../pages/emailvalida.php');
+          Foi enviado um e-mail para fazer validação do teu registro';
+
+          echo '<script>
+          window.location.href = "http://localhost/ideias-php-email/pages/emailvalida.php";
+      </script>';
+
         }
         else{
           $_SESSION['messagem'] = 'erro gerar codigo de validação';
@@ -72,7 +79,7 @@ function generateVerificationCode()
 }
 function  Enviarcoderash($email, $username, $verificationCode)
 {
-  $verificationLink = "http://seusite.com/verify.php?code=$verificationCode";
+  $verificationLink = "http://localhost//ideias-php-email/pages/VerificationCode.php?code=$verificationCode";
   $message = "Olá $username,\n\nPor favor, clique no link abaixo para verificar seu email:\n$verificationLink";
 
   if(emailValidacao($email, $message)){

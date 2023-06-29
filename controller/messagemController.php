@@ -9,36 +9,35 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-
-
-function enviarMenssagem()  {
+function enviarMenssagem($assunto, $message)  {
     try {
-        $mail = new PHPMailer(true);
         //Server settings
+        $mail = new PHPMailer(true);
+        $mail->CharSet = "UTF-8";
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      
         $mail->isSMTP();                                           
-        $mail->Host       = 'mail.dmdevelopers.co';                   
+        $mail->Host       = 'conexaosublime.com';                   
         $mail->SMTPAuth   = true;                                 
-        $mail->Username   = 'kenesms@dmdevelopers.co';                    
-        $mail->Password   = 'Q2lM#JD),v]+';                            
+        $mail->Username   = 'kene.borges@conexaosublime.com';                    
+        $mail->Password   = 'm;k4ippP*}Gr';                            
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
         $mail->Port       = 465;   
        
     
         //Recipients
-        $mail->setFrom('kenesms@dmdevelopers.co', 'Mailer');  
-        $mail->addAddress('nandoby10@gmail.com');               
+        $mail->setFrom('kene.borges@conexaosublime.com', 'Mailer');  
+        $mail->addAddress('btckeneconde@gmail.com');               
     
         //Content
         $mail->isHTML(true);                                 
-        $mail->Subject = 'teste de Email';
-        $mail->Body    = 'Email enviado com sucesso';
-        $mail->AltBody = 'email';
+        $mail->Subject = $assunto;
+        $mail->Body    = $message;
+        $mail->AltBody = $message;
     
         $mail->send();
-        echo 'Message has been sent';
+      
+        echo 'Message has been sent'; 
+        return true;
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -48,18 +47,19 @@ function emailValidacao($email, $body){
     try {
         //Server settings
         $mail = new PHPMailer(true);
+        $mail->CharSet = "UTF-8";
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      
         $mail->isSMTP();                                           
-        $mail->Host       = 'mail.dmdevelopers.co';                   
+        $mail->Host       = 'conexaosublime.com';                   
         $mail->SMTPAuth   = true;                                 
-        $mail->Username   = 'kenesms@dmdevelopers.co';                    
-        $mail->Password   = 'Q2lM#JD),v]+';                            
+        $mail->Username   = 'kene.borges@conexaosublime.com';                    
+        $mail->Password   = 'm;k4ippP*}Gr';                            
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
         $mail->Port       = 465;   
        
     
         //Recipients
-        $mail->setFrom('kenesms@dmdevelopers.co', 'Mailer');  
+        $mail->setFrom('kene.borges@conexaosublime.com', 'Mailer');  
         $mail->addAddress($email);               
     
         //Content
@@ -71,6 +71,7 @@ function emailValidacao($email, $body){
         $mail->send();
         echo 'Message has been sent';
         return true;
+        
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         return false;
